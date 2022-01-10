@@ -21,10 +21,18 @@ In addition, the running time of the programs (escpecially the data generation a
 In the following several R-Code-Scripts are explained, which can be found in the folder "RPrograms":
 - Costume functions ("0_CostumeFunctions_Analysis.R" and "0_CostumeFunctions_DataGeneration.R"):
   These two scripts conatin all needed functions for the data generation and analysis. Hence, they need to be loaded before conducting the simulations. 
+  
 - Data Generation ("1_DataGeneration.R"):
+  This script conducts the data generation for all four scenarios. At the beginning the working directory needs to be set, where the file "Simulation.seed" and the script "0_CostumeFunctions_DataGeneration.R" are saved. Furthermore, as mentioned above please keep the number of cores (num.cl) / number of iterations (n_sim) in mind so that the running time is not too long. At last the folder path for saving of the generated data should be supplied. 
   
 - Data Analysis ("2_DataAnalysis.R"):
-- Visualizations ("3_VisualizationsOfResults.R", "3_VisualizationsOfResults_ROC.R", "4_FurtherIllustrationsAndInformation.R")
+  This script conducts the data analysis of the generated data for all four scenarios. At the beginning the working directory needs to be set, where the script "0_CostumeFunctions_DataGeneration.R" is saved. Furthermore, as mentioned above please keep the number of cores (num.cl) in mind so that the running time is not too long. At last the folder path for saving of the analysed data (path_ana) and the folder path for the generated data (path_data) should be supplied. 
+
+- Visualizations ("3_VisualizationsOfResults.R", "3_VisualizationsOfResults_ROC.R"):
+  The script "3_VisualizationsOfResults.R" creates the Figures 1, 2, 4 and 5 of the paper. In addition, it provides the Figures 1 and 2 of the Appendix. At the beginning you need to set your working directory to the folder where the final results of the script "2_DataAnalysis.R" is saved. 
+  Figure 3 is created by script "3_VisualizationsOfResults_ROC.R" because further calculations of the True Postive Rate (TPR) and False Postitive Rate (FPR) is needed and hence the generated data sets need to be loaded again. Therefore, at the beginning the working directory needs to be set (path_ROC), where the results of the script "1_DataGeneration.R" is saved. 
+
+-  ("4_FurtherIllustrationsAndInformation.R"):
 
 ## Further information
 - Figure 2 with additional row: TODO
