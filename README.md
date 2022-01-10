@@ -18,4 +18,5 @@ We agree with the interpretation of Figure 1: ESMO’s and IQWiG’s method are 
 | 3          | 1     | 0            | 0     |
 | 4          | 315   | 992          | 7767  |
 
+
 - 
