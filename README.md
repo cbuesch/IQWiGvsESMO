@@ -32,15 +32,36 @@ In the following several R-Code-Scripts are explained, which can be found in the
   The script "3_VisualizationsOfResults.R" creates the Figures 1, 2, 4 and 5 of the paper. In addition, it provides the Figures 1 and 2 of the Appendix. At the beginning you need to set your working directory to the folder where the final results of the script "2_DataAnalysis.R" is saved. 
   Figure 3 is created by script "3_VisualizationsOfResults_ROC.R" because further calculations of the True Postive Rate (TPR) and False Postitive Rate (FPR) is needed and hence the generated data sets need to be loaded again. Therefore, at the beginning the working directory needs to be set (path_ROC), where the results of the script "1_DataGeneration.R" is saved. 
 
--  ("4_FurtherIllustrationsAndInformation.R"):
+- Further illustrations and information ("4_FurtherIllustrationsAndInformation.R"):
+    - Figure 2 with additional row: 
+      Supplement Figure 2 with an additional row displaying the absolute difference of maximal scoring percentages between the methods.
+    - Bias due to censoring mechanism: 
+      Our censoring mechanism is partly depending on the event times (see Appendix) and consequently introduces bias to the HR estimation. To investigate the amount of intruduced bias, we performed an additional simulation. Therefore, we simulated data of the Standard Scenario with n<sub>sim</sub>= 10,000 (iterations) and without sample size calculation, i.e. with a fixed sample size of 400 (200 per group) for each sub-scenario. The provided script performes this simulation and illustrates the results, which can also be found under the name "BiasDueToCensoringMechanism.tiff" in folder "FiguresAndTable".        
+      As the results show, our censoring mechanism for specific censoring rates introduces bias for the HR estimation. Nevertheless, since we implemented a combination of administrative censoring (not dependent on the event time) and specific censoring rate (dependent on the event time), this bias is reduced, leading only to a slightly underestimated HR (overall bias of Standard Scenario 1: -0.01139, Monte Carlo SE of bias: 0.00000000160). Furthermore, this introduced bias is not affecting the method comparison to a substantial degree because it is affecting all compared methods equally. 
+      In addition, below the table shows the bias and Monte Carlo SE of bias for different sub-scenarios of Standard Scenario 1 (without sample size calculation (N=400; 200 per group) and n<sub>sim</sub> = 10,000 (iterations), non-significant studies were still included in this analysis): 
+      
+      
+| censoring rate | med<sub>C</sub> | HR bias  | monte carlo SE of bias |
+|----------------|-----------------|----------|------------------------|
+| 0.2            | 6               | -0.00107 | 0.000129               |
+| 0.2            | 12              | 0.00110  | 0.000130               |
+| 0.2            | 18              | 0.00181  | 0.000131               |
+| 0.2            | 24              | 0.00198  | 0.000132               |
+| 0.2            | 30              | 0.00217  | 0.000133               |
+| 0.4            | 6               | -0.0158  | 0.000149               |
+| 0.4            | 12              | -0.0104  | 0.000147               |
+| 0.4            | 18              | -0.00748 | 0.000146               |
+| 0.4            | 24              | -0.00578 | 0.000146               |
+| 0.4            | 30              | -0.00467 | 0.000146               |
+| 0.6            | 6               | -0.0350  | 0.000186               |
+| 0.6            | 12              | -0.0285  | 0.000183               |
+| 0.6            | 18              | -0.0250  | 0.000181               |
+| 0.6            | 24              | -0.0229  | 0.000181               |
+| 0.6            | 30              | -0.0214  | 0.000180               |
+      
+ 
 
 ## Further information
-- Figure 2 with additional row: TODO
-
-- Bias due to cesnoring mechanism: TODO
-
-
-
 - Further interpretation of Figure 1 and Figure 2:
 In Figure 1 it can be seen that ESMO’s and IQWiG’s method are most highly correlated when the effect size is “moderate” (or ~0.80). Figure 2 then shows that for low designHR values, the lack of correlation between the two methods is due to ESMO’s method having a higher proportion of maximal scores (almost all being maximal). This is also illustrated by the table below, showing a cross table between ESMO’s dual rule and IQWiG’s method of Standard Scenario 1 for a designHRs of 0.36 with 90% power, censoring rate of 20%, and med<sub>C</sub> equal to 6 months (first column of Figure 2). It can clearly be seen that ESMO’s dual rule almost exclusively awards maximal scores for large treatment effects. IQWiG’s method on the other hand assigns studies to the whole range of categories. Hence, in this case the Spearman correlation between the methods are very small (0.0407). 
 
