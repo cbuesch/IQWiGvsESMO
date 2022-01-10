@@ -13,7 +13,7 @@ source("0_CostumeFunctions_DataGeneration.R")
 
 #-------------------- Same parameter in all scenarios  -------------------------
 # Number of used cores for Simulations
-num.cl <- 3
+num.cl <- 48
 
 # Number of iterations for each sub-scenario
 n_sim <- 10000 

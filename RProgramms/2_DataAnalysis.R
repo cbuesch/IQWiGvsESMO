@@ -14,7 +14,7 @@ source("0_CostumeFunctions_Analysis.R")
 
 #-------------------- Same parameter in all scenarios  -------------------------
 # Number of used cores for analysis
-num.cl <- 4
+num.cl <- 48
 
 # Loading / Saving paths
 path_data <- "" # e.g. ".../Simulations/Data/"

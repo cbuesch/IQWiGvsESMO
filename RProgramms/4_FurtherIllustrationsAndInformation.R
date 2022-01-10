@@ -10,7 +10,7 @@ library(foreach)
 library(doParallel)
 
 ## Number of used cores for Simulations
-num.cl <- 45
+num.cl <- 48
 
 ## Data loading
 results_final <- readRDS("Results.rds")
