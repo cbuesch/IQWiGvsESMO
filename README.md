@@ -1,5 +1,5 @@
 # IQWiGvsESMO
-Further information (R-Code, ADEMP structur of simulations) of Paper "A comprehensive comparison of additional benefit assessment methods applied by IQWiG and ESMO for time-to-event endpoints after significant phase III trials – A simulation study".
+Further information (R-Code, ADEMP structure of simulations) of Paper "A comprehensive comparison of additional benefit assessment methods applied by IQWiG and ESMO for time-to-event endpoints after significant phase III trials – A simulation study".
 In this github repository the paper and associated appendix including the ADEMP structure of our simulations can be found. Furthermore, the folder "FiguresAndTable" include all Figures and Tables of our paper as well as some plots illustrating further results of our simulations. And last but not least, the R-Code of our simulations are shared in the folder "RPrograms". Please read the R-Code instruction below before performing it!
 
 ## R-Code: 
@@ -16,11 +16,11 @@ Furthermore, you need to remove all lines containing
 ```r
 stopCluster(cl)
 ```
-In addition, the running time of the programs (escpecially the data generation and data analysis) is very long. We performed it with parallel computing using 48 cores and still needed several days. Therefore, please use many cores for the parallel computing or reduce the number of iterations (n<sub>sim</sub>).
+In addition, the running time of the programs (especially the data generation and data analysis) is very long. We performed it with parallel computing using 48 cores and still needed several days. Therefore, please use many cores for the parallel computing or reduce the number of iterations (n<sub>sim</sub>).
 
 In the following several R-Code-Scripts are explained, which can be found in the folder "RPrograms":
 - Costume functions ("0_CostumeFunctions_Analysis.R" and "0_CostumeFunctions_DataGeneration.R"):
-  These two scripts conatin all needed functions for the data generation and analysis. Hence, they need to be loaded before conducting the simulations. 
+  These two scripts contain all needed functions for the data generation and analysis. Hence, they need to be loaded before conducting the simulations. 
   
 - Data Generation ("1_DataGeneration.R"):
   This script conducts the data generation for all four scenarios. At the beginning the working directory needs to be set, where the file "Simulation.seed" and the script "0_CostumeFunctions_DataGeneration.R" are saved. Furthermore, as mentioned above please keep the number of cores (num.cl) / number of iterations (n_sim) in mind so that the running time is not too long. At last the folder path for saving of the generated data should be supplied. 
@@ -30,13 +30,13 @@ In the following several R-Code-Scripts are explained, which can be found in the
 
 - Visualizations ("3_VisualizationsOfResults.R", "3_VisualizationsOfResults_ROC.R"):
   The script "3_VisualizationsOfResults.R" creates the Figures 1, 2, 4 and 5 of the paper. In addition, it provides the Figures 1 and 2 of the Appendix. At the beginning you need to set your working directory to the folder where the final results of the script "2_DataAnalysis.R" is saved. 
-  Figure 3 is created by script "3_VisualizationsOfResults_ROC.R" because further calculations of the True Postive Rate (TPR) and False Postitive Rate (FPR) is needed and hence the generated data sets need to be loaded again. Therefore, at the beginning the working directory needs to be set (path_ROC), where the results of the script "1_DataGeneration.R" is saved. 
+  Figure 3 is created by script "3_VisualizationsOfResults_ROC.R" because further calculations of the True Positive Rate (TPR) and False Positive Rate (FPR) is needed and hence the generated data sets need to be loaded again. Therefore, at the beginning the working directory needs to be set (path_ROC), where the results of the script "1_DataGeneration.R" is saved. 
 
 - Further illustrations and information ("4_FurtherIllustrationsAndInformation.R"):
     - Figure 2 with additional row: 
       Supplement Figure 2 with an additional row displaying the absolute difference of maximal scoring percentages between the methods.
     - Bias due to censoring mechanism: 
-      Our censoring mechanism is partly depending on the event times (see Appendix) and consequently introduces bias to the HR estimation. To investigate the amount of intruduced bias, we performed an additional simulation. Therefore, we simulated data of the Standard Scenario with n<sub>sim</sub>= 10,000 (iterations) and without sample size calculation, i.e. with a fixed sample size of 400 (200 per group) for each sub-scenario. The provided script performes this simulation and illustrates the results, which can also be found under the name "BiasDueToCensoringMechanism.tiff" in folder "FiguresAndTable".        
+      Our censoring mechanism is partly depending on the event times (see Appendix) and consequently introduces bias to the HR estimation. To investigate the amount of introduced bias, we performed an additional simulation. Therefore, we simulated data of the Standard Scenario with n<sub>sim</sub>= 10,000 (iterations) and without sample size calculation, i.e. with a fixed sample size of 400 (200 per group) for each sub-scenario. The provided script performs this simulation and illustrates the results, which can also be found under the name "BiasDueToCensoringMechanism.tiff" in folder "FiguresAndTable".        
       As the results show, our censoring mechanism for specific censoring rates introduces bias for the HR estimation. Nevertheless, since we implemented a combination of administrative censoring (not dependent on the event time) and specific censoring rate (dependent on the event time), this bias is reduced, leading only to a slightly underestimated HR (overall bias of Standard Scenario 1: -0.01139, Monte Carlo SE of bias: 0.00000000160). Furthermore, this introduced bias is not affecting the method comparison to a substantial degree because it is affecting all compared methods equally. 
       In addition, below the table shows the bias and Monte Carlo SE of bias for different sub-scenarios of Standard Scenario 1 (without sample size calculation (N=400; 200 per group) and n<sub>sim</sub> = 10,000 (iterations), non-significant studies were still included in this analysis): 
       
