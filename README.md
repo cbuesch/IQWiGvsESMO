@@ -59,7 +59,6 @@ In the following several R-Code-Scripts are explained, which can be found in the
       | 0.6            | 24              | -0.0229  | 0.000181               |
       | 0.6            | 30              | -0.0214  | 0.000180               |
       
- 
 
 ## Further information
 - Further Figures:
@@ -68,7 +67,9 @@ In the following several R-Code-Scripts are explained, which can be found in the
     - Figure2_with80PowerAnd40Censoring.tiff
     - Figure4_withHRvar08.tiff
     - Figure5_with80PowerAnd40Censoring.tiff
-  
+- In addition, in folder "FiguresAndTable" further figures giving a greater understanding of the ESMO method are provided:
+    - AddFig_ESMO_Max_DueToSurvGain.tiff
+    - AddFig_StdErrKaplanMeier.tiff
   
 - Further interpretation of Figure 1 and Figure 2:
   In Figure 1 it can be seen that ESMO’s and IQWiG’s method are most highly correlated when the effect size is “moderate” (or ~0.80). Figure 2 then shows that for low designHR values, the lack of correlation between the two methods is due to ESMO’s method having a higher proportion of maximal scores (almost all being maximal). This is also illustrated by the table below, showing a cross table between ESMO’s dual rule and IQWiG’s method of Standard Scenario 1 for a designHRs of 0.36 with 90% power, censoring rate of 20%, and med<sub>C</sub> equal to 6 months (first column of Figure 2). It can clearly be seen that ESMO’s dual rule almost exclusively awards maximal scores for large treatment effects. IQWiG’s method on the other hand assigns studies to the whole range of categories. Hence, in this case the Spearman correlation between the methods are very small (0.0407). 
@@ -101,3 +102,12 @@ Again, IQWiG’s method awards the whole range of categories and almost always a
     | 4          | 0     | 1            | 4     |
 
   Overall, when the designHR is very small / large (effect size is strong / weak) and hence the classification seems to be the simplest, the methods disagree the most. As shown above, the reason for this behaviour is due to the fact that IQWiG’s method always awards the whole range of possible categories. Note that this does not mean that IQWiG always awards the same proportion for every category (minor, considerable, major) over each scenario. It just means that IQWiG, over the n<sub>sim</sub> iterations, at least sometimes awards every possible category. And since ESMO’s dual rule, in extreme cases, awards only one category to almost every iteration, the Spearman correlation is small. Due to space limitations, we did not include these cross tables and explanations into our manuscript but added it here.
+  
+  
+- Interpretation of Figure AddFig_ESMO_Max_DueToSurvGain.tiff:
+We implemented the complete ESMO method; hence the ESMO method can achieve a maximal score if the survival rate increases by 10% or more at 2, 3 or 5 years (depending on the occurred median survival time in the control group; see table 1). This figure illustrates the proportion of maximal ESMO scores due to the survival gain rule, dual rule or both rules (number of maximal ESMO scores due to survival gain rule (OR dual rule OR Both) divided by number of maximal ESMO scores) of our simulations for Standard Scenario 1, showing that most of the times a maximal ESMO score was assigned by its dual rule as well as its survival gain rule. Only in scenarios with small treatment effects (designHR close to 1) the reason that ESMO assigns a maximal score is solely due to its survival gain rule (green line at 100%). The number of assigned maximal scores in these sub-scenarios, however, is small. For example, in the sub-scenario with med<sub>C</sub> = 12, censoring proportion of 20% and designHR=0.86 (top row, second panel from the left), ESMO’s method assigns 73 trials a maximal score; in sub-scenario with med<sub>C</sub> = 12, censoring proportion of 40% and designHR=0.88 (middle row, second panel from the left) ESMOs method assigns 3 trials a maximal score. Some values/points are missing from the figure, because in these scenarios no maximal scores were assigned by the ESMO dual rule. Overall, it is safe to say that in our simulation all parts of the ESMO methods contribute to the ESMO assessment.
+
+- Interpretation of Figure AddFig_StdErrKaplanMeier.tiff:
+To examine if the estimated 2/3/5-year survival rates for ESMO's method are reliable, we took a look at the standard error of the Kaplan-Meier estimates at 2/3/5 years of our Standard Scenario 1 (see figure AddFig_StdErrKaplanMeier.tiff). Due to our sample size calculation resulting in larger sample sizes with smaller treatment effects, the standard error is getting smaller with smaller treatment effects as well. Furthermore, in the scenario with med<sub>C</sub> = 6 and large treatment effects, a clear group difference for the standard error can be seen, which can be interpreted as unreliable survival rate estimation. Nevertheless, as the figure AddFig_ESMO_Max_DueToSurvGain.tiff illustrates, in these extreme scenarios with such a large treatment effect, both parts of ESMOs method do assign a maximal score and, hence, the survival gain part is not even needed. Reason for this group difference is the fact that the survival curve of the control group is more often decreasing to 0% before the 2-year mark, which leads to a standard error of 0% and thus reduces the mean. This difference, however, is getting smaller with larger underlying med<sub>C</sub> and censoring rates because less survival curves are dropping to 0% before the key milestone 2, 3 or 5 year. 
+Since we implemented the complete ESMO method and, in our opinion, the 2/3/5-year survival rates are reliable. 
+
